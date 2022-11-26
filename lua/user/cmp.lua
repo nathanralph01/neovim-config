@@ -46,7 +46,8 @@ local kind_icons = {
 cmp.setup({
   enabled = function()
     local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
-    if in_prompt then  -- this will disable cmp in the Telescope window (taken from the default config)
+    local is_txt = vim.bo.filetype == 'text' or vim.bo.filetype == 'markdown';
+    if in_prompt or is_txt then  -- this will disable cmp in the Telescope window (taken from the default config)
       return false
     end
     local context = require("cmp.config.context")
